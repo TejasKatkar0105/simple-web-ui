@@ -14,6 +14,15 @@
   h1 {
     color: #005f73;
   }
+  label, input {
+    font-size: 1rem;
+  }
+  input {
+    padding: 0.5rem;
+    margin-right: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
   button {
     background-color: #0a9396;
     color: white;
@@ -35,15 +44,23 @@
 </head>
 <body>
   <h1>Simple Web UI Example</h1>
+  <label for="nameInput">Enter your name:</label>
+  <input type="text" id="nameInput" placeholder="Your name" />
   <button id="clickMeBtn">Click Me</button>
-  <div id="message"></div>
+  <div id="message" aria-live="polite"></div>
 
 <script>
   const btn = document.getElementById('clickMeBtn');
   const messageDiv = document.getElementById('message');
+  const nameInput = document.getElementById('nameInput');
 
   btn.addEventListener('click', () => {
-    messageDiv.textContent = 'Hello from your simple web UI!';
+    const name = nameInput.value.trim();
+    if (name) {
+      messageDiv.textContent = `Hello, ${name}! Welcome to your simple web UI!`;
+    } else {
+      messageDiv.textContent = 'Please enter your name first!';
+    }
   });
 </script>
 </body>
